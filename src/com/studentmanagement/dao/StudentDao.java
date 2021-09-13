@@ -82,7 +82,7 @@ public class StudentDao {
 
     public boolean updateName(Student student) throws SQLException{
         String query = "UPDATE Student SET first_name='"+student.getFirstName()+
-                "' and last_name='"+student.getLastName()+"' WHERE ID = "+student.getID();
+                "' and last_name='"+student.getLastName()+"' WHERE ID = "+student.getID()+";";
         Statement statement = getConnection().createStatement();
         int result = statement.executeUpdate(query);
         if(result != 0) {
@@ -93,7 +93,8 @@ public class StudentDao {
     }
 
     public boolean updateScore(Student student) throws SQLException{
-        String query = "UPDATE Student SET average_score="+student.getAverageScore();
+        String query = "UPDATE Student SET average_score="+student.getAverageScore()+
+                "WHERE ID = "+student.getID()+";";
         Statement statement = getConnection().createStatement();
         int result = statement.executeUpdate(query);
         if(result != 0 ){
@@ -102,7 +103,47 @@ public class StudentDao {
         }
         return false;
     }
+    public List<Student> findByCity(String city)throws Exception{
+        String query = "SELECT * FROM student WHERE city = '"+city+"';";
+        Statement statement = getConnection().createStatement();
+        ResultSet result = statement.executeQuery(query);
+        while (result.next()){
+            Student student = new Student(result);
+            studentList.add(student);
+        }
+        return studentList;
+    }
+    public boolean updateDob(Student student)throws Exception{
+        String query = "UPDATE student SET dob = '"+student.getDob()+"'WHERE ID = "+student.getID()+";";
+        Statement statement = getConnection().createStatement();
+        int result = statement.executeUpdate(query);
+        if (result!=0){
+            System.out.println("update dob successfully!");
+            return true;
+        }
+        return false;
+    }
 
+    public List<Student> findAverageScoreMax()throws Exception{
+        String query ="SELECT * FROM Student WHERE average_score IN (SELECT MAX(average_score) FROM Student);";
+        Statement statement = getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()){
+            Student student = new Student(resultSet);
+            studentList.add(student);
+        }
+        return studentList;
+    }
+    public boolean updateAllScore(Student student) throws SQLException{
+        String query = "UPDATE Student SET average_score="+student.getAverageScore()+";";
+        Statement statement = getConnection().createStatement();
+        int result = statement.executeUpdate(query);
+        if(result != 0 ){
+            System.out.println("update Student average score successfully*_*");
+            return true;
+        }
+        return false;
+    }
 
 }
 

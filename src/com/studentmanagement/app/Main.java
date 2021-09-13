@@ -36,18 +36,22 @@ public class Main {
                 case 6:
                     showMenu();
                     break;
-
                 case 7:
-                    
-                    //                   classService.findStudentByClassName();
+                    studentService.findStudentByCity();
                     break;
                 case 8:
-//                    classService.findStudentByMajor();
+                   studentService.updateStudentScore();
+                    break;
+                case 9:
+                   studentService.modifyDobById();
                     break;
                 case 10:
-//                    studentService.modifyDobById();
+                    studentService.findAverageMax();
                     break;
                 case 11:
+                    studentService.updateAllStudentScore();
+                    break;
+                case 12:
                     System.out.println("Good bye.");
                     return;
                 default:
@@ -63,13 +67,12 @@ public class Main {
         System.out.println("4. Update student name");
         System.out.println("5. Search student By Id");
         System.out.println("6. Show menu");
-        System.out.println("7. List Students By Class name");
-        System.out.println("8. List Students By major");
-		/*System.out.println("7. Tinh tuoi trung binh");
-		System.out.println("8. Tim sinh vien co diem cao nhat");
-		System.out.println("9. Sua diem toan  sinh vien");
-		System.out.println("10. Sua ngay sinh");*/
-        System.out.println("11. Exist");
-        /*System.out.println("12.Sua diem tat ca");*/
+        System.out.println("7. List Students By city");
+        System.out.println("8. update score student by id");
+		System.out.println("9. update date of birth by id");
+		System.out.println("10. find Student is averageScore max");
+		System.out.println("11. update all average score of student");
+        System.out.println("12. Exist");
+
     }
 }
