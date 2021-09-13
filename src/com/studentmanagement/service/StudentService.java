@@ -132,4 +132,55 @@ public class StudentService {
             e.printStackTrace();
         }
     }
+    public void findStudentByCity(){
+        try{
+            System.out.println("enter city of student :");
+            String city =  scanner.nextLine();
+            List<Student> student = studentDao.findByCity(city);
+            System.out.println(student+"\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void modifyDobById(){
+        try{
+            System.out.println("enter id need update dob");
+            int idUpdateDob=scanner.nextInt();
+            scanner.nextLine();
+            Student student = studentDao.findById(idUpdateDob);
+            System.out.println("enter new dob :");
+            String newDob = scanner.nextLine();
+            LocalDate date  = LocalDate.parse(newDob,DateTimeFormatter.ISO_LOCAL_DATE);
+            student.setDob(date);
+            studentDao.updateDob(student);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void findAverageMax(){
+        try{
+            List<Student> students = studentDao.findAverageScoreMax();
+            System.out.println(students+"\n");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateAllStudentScore(){
+        try{
+            System.out.println("Enter any representative ID to update all");
+            int idScore = scanner.nextInt();
+            scanner.nextLine();
+            Student student=studentDao.findById(idScore);
+            if(student==null){
+                System.out.println("not fount student");
+                return;
+            }
+            System.out.println("enter news score : ");
+            double newScore = scanner.nextDouble();
+            student.setAverageScore(newScore);
+            studentDao.updateAllScore(student);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
