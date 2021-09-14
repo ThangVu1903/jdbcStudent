@@ -144,6 +144,40 @@ public class StudentDao {
         }
         return false;
     }
+    public List<Student> findByTwoCity(String city1, String city2)throws Exception{
+        String query = "SELECT * FROM student WHERE city='"+city1+"' OR city = '"+city2+"';";
+        Statement statement = getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()){
+            Student student = new Student(resultSet);
+            studentList.add(student);
+
+        }
+        return studentList;
+    }
+    public List<Student> findSortAverage() throws SQLException {
+        String query = "select * from student order by average_score desc;";
+        Statement statement = getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while (resultSet.next()) {
+            Student student = new Student(resultSet);
+            studentList.add(student);
+        }
+        return studentList;
+    }
+    public double avgAllStudent()throws Exception{
+        String query = "select avg(average_score) from student;";
+        Statement statement = getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        double avg  = 0.0;
+        while(resultSet.next()){
+            avg = resultSet.getDouble(1);
+        }
+        return avg;
+    };
+
+
+
 
 }
 
