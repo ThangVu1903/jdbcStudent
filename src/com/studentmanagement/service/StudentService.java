@@ -183,4 +183,45 @@ public class StudentService {
             e.printStackTrace();
         }
     }
+
+    public void findBy2City(){
+        try{
+            System.out.println("enter city1  :  ");
+            String city1 = scanner.nextLine();
+            System.out.println("enter city2  :  ");
+            String city2 = scanner.nextLine();
+            List<Student> students = studentDao.findByTwoCity(city1,city2);
+            for (Student student: students) {
+                System.out.println(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void sortAverage(){
+        try{
+            List<Student> students = studentDao.findSortAverage();
+            if (students.isEmpty()){
+                System.out.println("not fount student");
+            }
+            for (Student student: students) {
+                System.out.println(student);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+    public void averageScoreStudent (){
+        try{
+            double avg = studentDao.avgAllStudent();
+            System.out.println("avg="+avg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+
 }

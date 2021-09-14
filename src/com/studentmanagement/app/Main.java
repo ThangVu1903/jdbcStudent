@@ -52,6 +52,15 @@ public class Main {
                     studentService.updateAllStudentScore();
                     break;
                 case 12:
+                    studentService.findBy2City();
+                    break;
+                case 13:
+                    studentService.sortAverage();
+                    break;
+                case 14:
+                    studentService.averageScoreStudent();
+                    break;
+                case 15:
                     System.out.println("Good bye.");
                     return;
                 default:
@@ -72,7 +81,10 @@ public class Main {
 		System.out.println("9. update date of birth by id");
 		System.out.println("10. find Student is averageScore max");
 		System.out.println("11. update all average score of student");
-        System.out.println("12. Exist");
+        System.out.println("12. list student by 2 city");
+        System.out.println("13. sort by average score ");
+        System.out.println("14. The average average of students");
+        System.out.println("15. Exist");
 
     }
 }
